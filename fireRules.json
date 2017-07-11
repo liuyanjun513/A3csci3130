@@ -11,6 +11,25 @@
                     ".validate": "newData.isString() && newData.val().matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$/i)"
                 }
             }
-        }
+    },
+    "Business":{
+        "$business":{
+            "number":{
+                  ".validate": "newData.isNumber() && newData.length>=9"
+            },
+            "name":{
+                  ".validate": "newData.isString() && newData.val().length>=2 && newData.val().length<=50"
+            },
+            "bussinessName":{
+                  ".validate": "newData.val().matches()"
+            },
+            "address":{
+                  ".validate": "newData.isString() && newData.val().length<50"
+            },
+            "Province":{
+                  ".validate": "newData.val().matches()"
+            }
+          }
+    }
   }
 }
