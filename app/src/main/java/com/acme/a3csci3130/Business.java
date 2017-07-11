@@ -18,6 +18,9 @@ public class Business implements Serializable{
     private String address;
     private String province;
 
+    public Business(){
+
+    }
     public Business(String uid,String name,String number){
         this.uid=uid;
         this.name=name;
@@ -79,13 +82,5 @@ public class Business implements Serializable{
         this.province = province;
     }
 
-    @Exclude
-    public Map<String, Object> toMap(){
-        HashMap<String, Object> result = new HashMap<>();
-        result.put("uid", uid);
-        result.put("name", name);
-        result.put("number", number);
 
-        return result;
-    }
 }

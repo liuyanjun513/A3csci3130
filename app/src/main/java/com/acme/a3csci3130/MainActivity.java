@@ -3,6 +3,7 @@ package com.acme.a3csci3130;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -27,22 +28,22 @@ public class MainActivity extends Activity {
 
         //Set-up Firebase
         appData.firebaseDBInstance = FirebaseDatabase.getInstance();
-        appData.firebaseReference = appData.firebaseDBInstance.getReference();
+        appData.firebaseReference = appData.firebaseDBInstance.getReference("contacts");
 
         //Get the reference to the UI contents
         contactListView = (ListView) findViewById(R.id.listView);
 
         //Set up the List View
-       firebaseAdapter = new FirebaseListAdapter<Business>(this, Business.class,
+        firebaseAdapter = new FirebaseListAdapter<Business>(this, Business.class,
                 android.R.layout.simple_list_item_1, appData.firebaseReference) {
             @Override
             protected void populateView(View v, Business model, int position) {
                 TextView contactName = (TextView)v.findViewById(android.R.id.text1);
-                //TextView number=(TextView)v.findViewById(android.R.id.text2);
-                contactName.setText(model.getName());
-                //number.setText(model.getNumber());
+                contactName.setText("      name:"+model.getName()+"   number:"+model.getNumber()+"     address:"+model.getAddress()
+                +"   business name:"+model.getBusinessName()+"     province:"+model.getProvince());
             }
         };
+
         contactListView.setAdapter(firebaseAdapter);
         contactListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             // onItemClick method is called everytime a user clicks an item on the list

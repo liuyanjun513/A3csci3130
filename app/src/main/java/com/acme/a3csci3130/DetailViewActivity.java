@@ -39,20 +39,22 @@ public class DetailViewActivity extends Activity {
 
     public void updateContact(View v){
         FirebaseDatabase db=FirebaseDatabase.getInstance();
-        DatabaseReference dr=db.getReference(receivedPersonInfo.getUid());
+        DatabaseReference dr=db.getReference("contacts");
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("name",nameField.getText().toString());
         map.put("number",numberField.getText().toString());
         map.put("businessName",businessNameField.getText().toString());
         map.put("address",addressField.getText().toString());
         map.put("province",provinceField.getText().toString());
-        dr.updateChildren(map);
+        dr.child(receivedPersonInfo.getUid()).updateChildren(map);
+        finish();
     }
 
     public void eraseContact(View v)
     {
         FirebaseDatabase db=FirebaseDatabase.getInstance();
-        DatabaseReference dr=db.getReference(receivedPersonInfo.getUid());
-        dr.setValue(null);
+        DatabaseReference dr=db.getReference("contacts");
+        dr.child(receivedPersonInfo.getUid()).setValue(null);
+        finish();
     }
 }
