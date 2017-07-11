@@ -44,12 +44,8 @@ public class CreateContactAcitivity extends Activity {
         String province=provinceField.getText().toString();
         Business business = new Business(personID, number, name,businessName,address,province);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Contact");
-        myRef.child(personID).setValue(business);
-
-        Toast.makeText(this,business.getUid()+" "+business.getName()+" "+business.getNumber(),Toast.LENGTH_LONG).show();
-        //appState.firebaseReference.child(personID).setValue(person);
+        //Toast.makeText(this,business.getUid()+" "+business.getName()+" "+business.getNumber(),Toast.LENGTH_LONG).show();
+        appState.firebaseReference.child(personID).setValue(business);
 
         finish();
 
